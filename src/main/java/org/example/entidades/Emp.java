@@ -2,7 +2,14 @@ package org.example.entidades;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "emps")
 public class Emp {
@@ -11,82 +18,20 @@ public class Emp {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_emp")
     private long id;
+    @NonNull
     private String nombre;
+    @NonNull
     private String puesto;
+    @NonNull
     private double sueldo;
+    @NonNull
     private int edad;
+    @NonNull
     private String DNI;
+    @NonNull
     private boolean esJefe;
-
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "dpto_id")
     private Dpto dptoElement;
-
-
-
-    public Emp() {
-        super();
-    }
-
-    public Emp(String nombre, String puesto, double sueldo, int edad, String dNI, boolean esJefe) {
-        super();
-        this.nombre = nombre;
-        this.puesto = puesto;
-        this.sueldo = sueldo;
-        this.edad = edad;
-        DNI = dNI;
-        this.esJefe = esJefe;
-    }
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getPuesto() {
-        return puesto;
-    }
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
-    }
-    public double getSueldo() {
-        return sueldo;
-    }
-    public void setSueldo(double sueldo) {
-        this.sueldo = sueldo;
-    }
-    public int getEdad() {
-        return edad;
-    }
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-    public String getDNI() {
-        return DNI;
-    }
-    public void setDNI(String dNI) {
-        DNI = dNI;
-    }
-    public boolean isEsJefe() {
-        return esJefe;
-    }
-    public void setEsJefe(boolean esJefe) {
-        this.esJefe = esJefe;
-    }
-
-    public Dpto getDptoElement() {
-        return dptoElement;
-    }
-
-    public void setDptoElement(Dpto dptoElement) {
-        this.dptoElement = dptoElement;
-    }
 }

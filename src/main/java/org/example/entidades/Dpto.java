@@ -1,64 +1,29 @@
 package org.example.entidades;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name="dptos")
 public class Dpto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dpto_id")
     private int id;
-
+    @NonNull
     private String nombre;
+    @NonNull
     private String localidad;
 
     @OneToMany(mappedBy = "dptoElement", cascade = CascadeType.ALL)
-    private List<Emp> empts;
-
-    public Dpto() {
-
-    }
-
-    public Dpto(String nombre, String localidad) {
-        super();
-        this.nombre = nombre;
-        this.localidad = localidad;
-        this.empts = new ArrayList<Emp>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
-    public void setEmpts(ArrayList<Emp> lista) {
-        this.empts = lista;
-    }
+    private List<Emp> empts = new ArrayList<Emp>();
 
     public void addEmps(Emp emp) {
         this.empts.add(emp);
